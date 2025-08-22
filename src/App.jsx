@@ -15,8 +15,8 @@ function App() {
     try {
       // In a real app, you'd fetch from API endpoints
       // For now, we'll use the CSV data directly
-      const nodesResponse = await fetch('/data/nodes.csv')
-      const linksResponse = await fetch('/data/links.csv')
+      const nodesResponse = await fetch('/nodes.csv')
+      const linksResponse = await fetch('/links.csv')
       
       const nodesText = await nodesResponse.text()
       const linksText = await linksResponse.text()
