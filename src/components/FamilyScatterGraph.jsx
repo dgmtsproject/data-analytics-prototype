@@ -324,8 +324,109 @@ export default function FamilyScatterGraph({ nodesData, linksData }) {
   }, [nodes, marriageLinks, parentLinks, parentCountByChild, childCountByParent, childToParents, nodesData])
 
   return (
-    <div className="chart-container full-width" ref={wrapperRef}>
+    <div className="chart-container full-width" ref={wrapperRef} style={{ position: 'relative' }}>
       <h2>Family Relationship Network</h2>
+      
+      {/* Legend */}
+      <div style={{
+        position: 'absolute',
+        top: '60px',
+        right: '20px',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        border: '1px solid #e5e7eb',
+        borderRadius: '8px',
+        padding: '16px',
+        fontSize: '12px',
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+        zIndex: 10,
+        minWidth: '200px'
+      }}>
+        <div style={{ fontWeight: 'bold', marginBottom: '12px', fontSize: '14px' }}>Legend</div>
+        
+        {/* Node Colors */}
+        <div style={{ marginBottom: '12px' }}>
+          <div style={{ fontWeight: '600', marginBottom: '6px' }}>People:</div>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+            <div style={{ 
+              width: '12px', 
+              height: '12px', 
+              borderRadius: '50%', 
+              backgroundColor: '#3b82f6',
+              border: '1px solid #111827',
+              marginRight: '8px' 
+            }}></div>
+            <span>Male</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+            <div style={{ 
+              width: '12px', 
+              height: '12px', 
+              borderRadius: '50%', 
+              backgroundColor: '#ef4444',
+              border: '1px solid #111827',
+              marginRight: '8px' 
+            }}></div>
+            <span>Female</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+            <div style={{ 
+              width: '8px', 
+              height: '8px', 
+              borderRadius: '50%', 
+              backgroundColor: '#a78bfa',
+              border: '1px solid #111827',
+              marginRight: '12px' 
+            }}></div>
+            <span>Child of two parents</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+            <div style={{ 
+              width: '12px', 
+              height: '12px', 
+              borderRadius: '50%', 
+              backgroundColor: '#64748b',
+              border: '1px solid #111827',
+              marginRight: '8px' 
+            }}></div>
+            <span>Unknown</span>
+          </div>
+        </div>
+
+        {/* Relationship Lines */}
+        <div>
+          <div style={{ fontWeight: '600', marginBottom: '6px' }}>Relationships:</div>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+            <div style={{ 
+              width: '20px', 
+              height: '3px', 
+              backgroundColor: '#ef4444',
+              marginRight: '8px' 
+            }}></div>
+            <span>Married (opposite-sex)</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+            <div style={{ 
+              width: '20px', 
+              height: '3px', 
+              backgroundColor: '#22c55e',
+              marginRight: '8px' 
+            }}></div>
+            <span>Married (same-sex)</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+            <div style={{ 
+              width: '20px', 
+              height: '2px', 
+              backgroundColor: '#64748b',
+              marginRight: '8px',
+              backgroundImage: 'repeating-linear-gradient(to right, #64748b 0px, #64748b 8px, transparent 8px, transparent 13px)'
+            }}></div>
+            <span>Parent → Child</span>
+          </div>
+        </div>
+      </div>
+      
       <svg ref={svgRef} className="w-full h-[700px]"></svg>
     </div>
   )
